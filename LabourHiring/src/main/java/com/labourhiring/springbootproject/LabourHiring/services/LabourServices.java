@@ -20,4 +20,6 @@ public interface LabourServices
 	List<Labour> getHiredList(Integer emp_id);
 	
 	List<Employer> getRequestList(Integer labour_id);
+	
+	Labour updateLabour(Labour labour);
 }

@@ -2,6 +2,7 @@ package com.labourhiring.springbootproject.LabourHiring.services;
 
 
 import java.util.ArrayList;
+import java.util.Optional;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -123,6 +124,30 @@ public class LabourServicesImpl implements LabourServices
 			li.add(emp);
 		}
 		return li;
+	}
+
+	@Override
+	public Labour updateLabour(Labour labour) {
+		Optional<Labour> lab = labourDAO.findById(labour.getId());
+		
+		Labour labr = lab.get();
+		if(!lab.isPresent())
+		{
+			return null;
+		}
+		labr.setId(labour.getId());
+		labr.setFname(labour.getFname());
+		labr.setLname(labour.getLname());
+		labr.setGender(labour.getGender());
+		labr.setDateofbirth(labour.getDateofbirth());
+		labr.setHourlycharges(labour.getHourlycharges());
+		labr.setStateId((Integer)(labour.getStateId()));
+		labr.setDistrictId((Integer)(labour.getDistrictId()));
+		labr.setVillageId((Integer)(labour.getVillageId()));
+		labr.setPlace(labour.getPlace());
+		labr.setPostcode(labour.getPostcode());	
+		labourDAO.save(labr);
+		return getLabourByPhoneNumber(labr.getPhone(),labr.getPassword());
 	}
 	
 	

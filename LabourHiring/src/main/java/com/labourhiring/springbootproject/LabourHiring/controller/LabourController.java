@@ -67,5 +67,10 @@ public class LabourController {
 		return labourService.getRequestList(labour_id);
 	}
 	
+	@PostMapping(value = "/updatelabour")
+	public Labour updateLabour(@RequestBody Labour labour)
+	{
+		return labourService.updateLabour(labour);
+	}
 	
 }
